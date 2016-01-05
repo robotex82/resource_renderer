@@ -22,7 +22,8 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
     end
 
     def column(attribute_name, options = {})
-      return column_with_sorting(attribute_name, options) if Itsf::Backend.features?(:ransack) && options.has_key?(:sortable) && options[:sortable] != false
+      # return column_with_sorting(attribute_name, options) if Itsf::Backend.features?(:ransack) && options.has_key?(:sortable) && options[:sortable] != false
+      return column_with_sorting(attribute_name, options) if options.has_key?(:sortable) && options[:sortable] != false
 
       label = if @resource_class.respond_to?(:human_attribute_name)
         @resource_class.human_attribute_name(attribute_name)
