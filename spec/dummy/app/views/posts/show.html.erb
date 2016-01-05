@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<%= render_resource(@post, as: :unordered_list) do |d| %>
+  <%= d.display :title %>
+  <%= d.display :body %>
+  <%= d.display :published %>
+  <%= d.display :created_at %>
+  <%= d.display :updated_at %>
+<% end %>
+
+<%= render_resource(@post, as: :attribute_table) do |d| %>
+  <%= d.row :title %>
+  <%= d.row :body %>
+  <%= d.row :published %>
+  <%= d.row :created_at %>
+  <%= d.row :updated_at %>
+<% end %>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

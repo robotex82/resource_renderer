@@ -1,0 +1,2 @@
+class FalseClassRenderer < BooleanRenderer
+end
