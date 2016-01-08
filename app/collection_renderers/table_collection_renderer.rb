@@ -1,6 +1,6 @@
 class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
   class Header
-    attr_accessor :controller, :helper, :view_context
+    attr_accessor :controller, :helper, :view_context, :resource_class
     alias_method :h, :helper
 
     def initialize(resource_class, helper)

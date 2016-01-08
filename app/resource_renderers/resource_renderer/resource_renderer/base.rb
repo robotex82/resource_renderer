@@ -27,6 +27,10 @@ module ResourceRenderer
         column(*args, options, &block)
       end
 
+      def resource_class
+        @resource_class ||= resource.class
+      end
+
       private
 
       def attribute_renderer(attribute_name, attribute_renderer_name = nil, &block)
@@ -44,10 +48,6 @@ module ResourceRenderer
 
       def attribute_value(attribute_name)
         attribute_renderer(attribute_name)
-      end
-
-      def resource_class
-        @resource_class ||= resource.class
       end
 
       def attribute_renderer_class_for(attribute_name, attribute_renderer_name = nil, &block)

@@ -10,6 +10,8 @@ class AssociationRenderer < ResourceRenderer::AttributeRenderer::Base
     url = options.delete(:url)
     label = associated.send(label_method)
 
+    return label if url === false
+
     target = url.present? ? url.call(model) : associated
 
     return if target.nil?
