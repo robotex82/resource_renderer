@@ -2,16 +2,6 @@ require 'timeline/event'
 
 module Timeline
   class ExtractEventsService < Itsf::Services::V2::Service::Base
-    # class Event
-    #   attr_accessor :title, :description, :happened_at
-
-    #   def initialize(attributes)
-    #     attributes.each do |name, value|
-    #       send("#{name}=", value)
-    #     end
-    #   end
-    # end
-
     class Response < Itsf::Services::V2::Response::Base
       attr_accessor :events
     end
@@ -26,9 +16,20 @@ module Timeline
 
     private
 
+    def initialize_attributes
+      @title_method       = :title
+      @description_method = :description
+      @timestamp_method   = :created_at
+    end
+
     def extract_events
       info 'Extracting Events'
-      resources.collect { |resource| Event.new(title: resource.send(title_method), description: resource.send(description_method), happened_at: resource.send(timestamp_method)) }
+      resources.collect do |resource|
+        Event.new(
+          title:       resource.send(title_method),
+          description: resource.send(description_method),
+          happened_at: resource.send(timestamp_method))
+      end
     end
 
     def resources
