@@ -8,6 +8,14 @@ module Timeline
       end
     end
 
+    def title
+      I18n.t("classes.#{self.class.name.underscore}")
+    end
+
+    def description
+      self.inspect
+    end
+
     def <=>(other)
       happened_at <=> other.happened_at
     end
