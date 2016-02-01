@@ -7,5 +7,9 @@ module Timeline
         send("#{name}=", value)
       end
     end
+
+    def <=>(other)
+      happened_at <=> other.happened_at
+    end
   end
 end
