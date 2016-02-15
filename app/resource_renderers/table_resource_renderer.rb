@@ -3,6 +3,12 @@ class TableResourceRenderer < ResourceRenderer::ResourceRenderer::Base
     build_table_data(attribute_name, options, &block)
   end
 
+    def columns
+      resource_class.attribute_names.collect do |name|
+        column name
+      end.join.html_safe
+    end
+
   def render(&block)
     helper.content_tag(:tr) do
       block.call(self)

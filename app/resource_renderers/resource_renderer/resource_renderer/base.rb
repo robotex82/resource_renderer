@@ -59,7 +59,17 @@ module ResourceRenderer
           resource.send(attribute_name).class.name.demodulize.underscore.to_sym
         end
         klass_name = "#{displayer_type}_renderer".camelize
-        klass = Object.const_get(klass_name)
+        klass = begin
+          Object.const_get(klass_name) # rescue GenericRenderer
+        rescue NameError => e
+          Rails.logger.warn "Resource Renderer: #{e.message}. Using GenericRenderer instead"
+          GenericRenderer
+        end
+        # klass = if Object.const_defined?(klass_name)
+        #   Object.const_get(klass_name)
+        # else
+        #   GenericRenderer
+        # end
         unless klass.is_a?(Class)
           raise DisplayerNotDefinedException, "#{klass.to_s} not defined"
         end

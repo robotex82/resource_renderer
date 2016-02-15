@@ -32,6 +32,12 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
       helper.content_tag(:th, label)
     end
 
+    def columns
+      resource_class.attribute_names.collect do |name|
+        column name
+      end.join.html_safe
+    end
+
     def timestamps
       column(:created_at, sortable: true) +
       column(:updated_at, sortable: true)
