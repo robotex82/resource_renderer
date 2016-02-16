@@ -1,0 +1,7 @@
+.media
+  .media-left
+    = link_to(link_href, class: 'col-lg-4') do
+      %img.media-object.thumbnail.img-responsive{alt: title, src: image_src}
+  .media-body
+    %h4.media-heading= title
+    = body
