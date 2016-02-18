@@ -11,7 +11,7 @@ module ResourceRenderer
         self.renderer_class = get_renderer_class(renderer_name)
         self.collection = collection
         self.helper = helper
-        self.renderer = renderer_class.new(collection, resource_class, helper)
+        self.renderer = renderer_class.new(collection, resource_class, helper, options)
         self
       end
 

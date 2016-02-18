@@ -29,7 +29,7 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
       else
         attribute_name
       end
-      helper.content_tag(:th, label)
+      helper.content_tag(:th, label, id: "table-header-#{attribute_name}")
     end
 
     def columns
@@ -43,6 +43,10 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
       column(:updated_at, sortable: true)
     end
 
+    def userstamps
+      column(:creator, sortable: true) +
+      column(:updater, sortable: true)
+    end
     def acts_as_published_actions
       column(:acts_as_published_actions)
     end
@@ -69,12 +73,20 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
 
       sort_link = helper.sort_link(ransack_query, sort_by, label)
       
-      helper.content_tag(:th, sort_link)
+      helper.content_tag(:th, sort_link, id: "table-header-#{attribute_name}")
     end
 
     def ransack_query
       view_context.instance_variable_get('@q')
     end
+  end
+
+  attr_accessor :table_html_options
+
+  def initialize(*args)
+    super
+    options.reverse_merge(table_html_options: {})
+    self.table_html_options = options.delete(:table_html_options)
   end
 
   def render(&block)
@@ -87,10 +99,6 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
   end
 
   private
-
-  def table_html_options
-    nil
-  end
 
   def render_header(&block)
     header_renderer.render(&block)

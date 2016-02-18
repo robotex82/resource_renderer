@@ -20,6 +20,12 @@ class TableResourceRenderer < ResourceRenderer::ResourceRenderer::Base
     column(:updated_at)
   end
 
+
+  def userstamps
+    column(:creator) +
+    column(:updater)
+  end
+
   def acts_as_published_actions
     link_path = helper.controller.url_for(action: :toggle_published, id: resource.to_param)
     column(:published_actions) do |resource| 

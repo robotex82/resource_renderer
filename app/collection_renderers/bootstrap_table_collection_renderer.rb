@@ -6,6 +6,6 @@ class BootstrapTableCollectionRenderer < TableCollectionRenderer
   end
 
   def table_html_options
-    { class: 'table table-responsive table-condensed table-striped table-hover' }
+    @table_html_options || { class: 'table table-responsive table-condensed table-striped table-hover' }
   end
 end

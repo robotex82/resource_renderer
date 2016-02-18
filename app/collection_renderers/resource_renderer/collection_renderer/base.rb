@@ -1,10 +1,10 @@
 module ResourceRenderer
   module CollectionRenderer
     class Base
-      attr_accessor :helper, :collection, :resource_class
+      attr_accessor :helper, :collection, :resource_class, :options
 
-      def initialize(collection, resource_class, helper)
-        @collection, @resource_class, @helper = collection, resource_class, helper
+      def initialize(collection, resource_class, helper, options = {})
+        @collection, @resource_class, @helper, @options = collection, resource_class, helper, options
       end
 
       def render(&block)
