@@ -8,6 +8,8 @@ class ThumbnailRenderer < ResourceRenderer::AttributeRenderer::Base
     return unless attachment.respond_to?(:url)
     source = attachment.url(style)
     
-    helper.image_tag(source, image_tag_options)
+    helper.link_to(attachment.url, { data: { gallery: 'gallery' } }) do
+      helper.image_tag(source, image_tag_options)
+    end
   end
 end
