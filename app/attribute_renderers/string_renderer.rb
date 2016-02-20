@@ -8,8 +8,11 @@ class StringRenderer < ResourceRenderer::AttributeRenderer::Base
       class: html_class
     }
 
+    value = value_for_attribute(attribute_name)
+    value = value.to_s unless value.is_a?(String)
+
     helper.capture do
-      h.content_tag(:div, html_attributes) { value_for_attribute(attribute_name) }
+      h.content_tag(:div, html_attributes) { value }
     end
   end
 end
