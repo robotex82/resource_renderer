@@ -3,8 +3,10 @@ class TableResourceRenderer < ResourceRenderer::ResourceRenderer::Base
     build_table_data(attribute_name, options, &block)
   end
 
-    def columns
-      resource_class.attribute_names.collect do |name|
+    def columns(*args)
+      _ = args.extract_options!
+      columns = *args || resource_class.attribute_names
+      columns.collect do |name|
         column name
       end.join.html_safe
     end

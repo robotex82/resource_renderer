@@ -32,8 +32,10 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
       helper.content_tag(:th, label, id: "table-header-#{attribute_name}")
     end
 
-    def columns
-      resource_class.attribute_names.collect do |name|
+    def columns(*args)
+      _ = args.extract_options!
+      columns = *args || resource_class.attribute_names
+      columns.collect do |name|
         column name
       end.join.html_safe
     end
