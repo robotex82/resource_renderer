@@ -1,7 +1,11 @@
 .media
   .media-left
-    = link_to(link_href, class: 'col-lg-4') do
+    = link_to(link_url, class: 'col-lg-4') do
       %img.media-object.thumbnail.img-responsive{alt: title, src: image_src}
   .media-body
-    %h4.media-heading= title
-    = body
+    %h3.media-heading= title
+    %div{ media_body_content_html_options }
+      = body
+    - if link_to_more_url.present?
+      .media-actions
+        = link_to(t('.more'), link_to_more_url, class: 'btn btn-primary')
