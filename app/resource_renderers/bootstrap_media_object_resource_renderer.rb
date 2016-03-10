@@ -23,7 +23,7 @@ class BootstrapMediaObjectResourceRenderer < ResourceRenderer::ResourceRenderer:
       title:            title || @resource.send(title_method),
       body:             body || @resource.send(body_method),
       image_src:        image_url || @resource.send(image_method).send(image_url_method),
-      link_url:         helper.url_for(@resource),
+      link_url:         link_to_more_url || helper.url_for(@resource),
       link_to_more_url: link_to_more_url,
       media_body_content_html_options: media_body_content_html_options
     }
