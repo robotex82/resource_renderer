@@ -1,7 +1,8 @@
 .media
   .media-left
     = link_to(link_url, class: 'col-lg-4') do
-      %img.media-object.thumbnail.img-responsive{alt: title, src: image_src}
+      - if image_src
+        %img.media-object.thumbnail.img-responsive{alt: title, src: image_src}
   .media-body
     %h3.media-heading= title
     %div{ media_body_content_html_options }
