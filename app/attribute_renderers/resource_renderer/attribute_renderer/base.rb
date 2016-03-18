@@ -3,6 +3,7 @@ module ResourceRenderer
     class Base
       attr_accessor :model, :helper
       alias_method :h, :helper
+      alias_method :resource, :model
 
       def initialize(model, helper)
         @model, @helper = model, helper
