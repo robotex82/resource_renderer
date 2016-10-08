@@ -56,6 +56,10 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
     def acts_as_list_actions(options = {})
       column(:acts_as_published_actions)
     end
+
+    def awesome_nested_set_actions(options = {})
+      column(:awesome_nested_set_actions)
+    end
     private
 
     def column_with_sorting(attribute_name, options = {})  

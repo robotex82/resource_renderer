@@ -53,6 +53,14 @@ class TableResourceRenderer < ResourceRenderer::ResourceRenderer::Base
     column :acts_as_list_actions, column_options
   end
 
+  def awesome_nested_set_actions(options = {})
+    scope = options[:scope]
+
+    column_options = { as: :awesome_nested_set }
+    column_options[:scope] = scope if scope.present?
+    column :awesome_nested_set_actions, column_options
+  end
+
   private 
 
   def build_table_data(attribute_name, options = {}, &block)
