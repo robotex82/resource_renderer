@@ -54,7 +54,7 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
     end
 
     def acts_as_list_actions(options = {})
-      column(:acts_as_published_actions)
+      column(:acts_as_list_actions)
     end
 
     def awesome_nested_set_actions(options = {})
@@ -78,7 +78,7 @@ class TableCollectionRenderer < ResourceRenderer::CollectionRenderer::Base
       end
 
       sort_link = helper.sort_link(ransack_query, sort_by, label)
-      
+
       helper.content_tag(:th, sort_link, id: "table-header-#{attribute_name}")
     end
 
